@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 mongoose.connect('mongodb://localhost/legodata');
 
@@ -10,24 +11,34 @@ db.on('open', () => {
 
 const recommendationSchema = new mongoose.Schema({
   pid: Number,
-  Name: String,
-  Rating: Number,
-  Reviews_count: Number,
-  Price: String,
-  Image_url: String,
-  Label: String,
-  Show_most_like: String,
-  Wishlist: Boolean,
-  In_cart: Boolean,
+  related_pid:[Number],
+  name: String,
+  rating: Number,
+  reviews_count: Number,
+  price: String,
+  image_url: String,
+  label: String,
+  show_most_like: String,
+  wishlist: String,
+  in_cart: Boolean,
 });
 
 const Recommendation = mongoose.model('Recommendation', recommendationSchema);
+
+// const getInfo = (callback) => {
+//   Recommendation.find().then((pdts) =>{
+//     callback(null, pdts);
+//   }).catch(err =>{
+//     callback(err);
+//   })
+// };
 
 const getInfo = (callback) => {
   Recommendation.find({}, (err, results) => {
     callback(results);
   });
 };
+
 module.exports = {
   Recommendation,
   getInfo,

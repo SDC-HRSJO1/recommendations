@@ -8,31 +8,28 @@ for (let j = 1; j < 11; j += 1) {
 }
 
 const products = [];
+const generateArray = () =>{
+  const array = [];
+  for(let k = 0; k < 13; k += 1){
+    array.push(faker.random.number(100))
+  }
+  return array;
+}
 
 for (let i = 1; i < 101; i += 1) {
-  const recommendations = {};
-  let count = 0;
-  while (count < 12) {
-    const randomNum = faker.random.number({
-      min: 1,
-      max: 100,
-    });
-    if (!recommendations[randomNum] && randomNum !== i) {
-      recommendations[randomNum] = randomNum;
-      count += 1;
-    }
-  }
   products.push({
     pid: i,
-    Name: faker.commerce.productName(),
-    Rating: faker.random.number({ min: 0, max: 5, precision: 0.1 }),
-    Reviews_count: faker.random.number(3000),
-    Price: faker.commerce.price(0.10, 100.00, 2, '$'),
-    Image_url: pictures[faker.random.number(pictures.length - 1)],
-    Label: faker.commerce.department(),
-    Show_most_like: faker.commerce.productAdjective(),
-    Wishlist: faker.random.boolean(),
-    In_cart: false,
+    related_pid: generateArray(),
+    name: faker.commerce.productName(),
+    rating: faker.random.number({ min: 0, max: 5, precision: 0.01 }),
+    reviews_count: faker.random.number(3000),
+    price: faker.commerce.price(0.10, 100.00, 2, '$'),
+    image_url: pictures[faker.random.number(pictures.length - 1)],
+    label: faker.commerce.department(),
+    show_most_like: faker.commerce.productAdjective(),
+    //wishlist: faker.random.boolean(),
+    wishlist: faker.random.arrayElement(['Y','N']),
+    in_cart: false,
   });
 }
 
