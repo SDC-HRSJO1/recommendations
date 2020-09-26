@@ -11,7 +11,7 @@ db.on('open', () => {
 
 const recommendationSchema = new mongoose.Schema({
   pid: Number,
-  related_pid:[Number],
+  related_pid: [Number],
   name: String,
   rating: Number,
   reviews_count: Number,

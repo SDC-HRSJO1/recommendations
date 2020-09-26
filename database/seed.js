@@ -8,13 +8,13 @@ for (let j = 1; j < 11; j += 1) {
 }
 
 const products = [];
-const generateArray = () =>{
+const generateArray = () => {
   const array = [];
-  for(let k = 0; k < 13; k += 1){
-    array.push(faker.random.number(100))
+  for (let k = 0; k < 13; k += 1) {
+    array.push(faker.random.number(100));
   }
   return array;
-}
+};
 
 for (let i = 1; i < 101; i += 1) {
   products.push({
@@ -27,8 +27,8 @@ for (let i = 1; i < 101; i += 1) {
     image_url: pictures[faker.random.number(pictures.length - 1)],
     label: faker.commerce.department(),
     show_most_like: faker.commerce.productAdjective(),
-    //wishlist: faker.random.boolean(),
-    wishlist: faker.random.arrayElement(['Y','N']),
+    // wishlist: faker.random.boolean(),
+    wishlist: faker.random.arrayElement(['Y', 'N']),
     in_cart: false,
   });
 }
