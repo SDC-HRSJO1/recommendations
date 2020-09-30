@@ -1,0 +1,14 @@
+## Mac Files##
+.DS_Store
+
+## NPM ##
+node_modules/
+package-lock.json
+
+pids
+*.pid
+logs
+*.log
+
+# Compiled Dirs
+dist/
