@@ -18,23 +18,15 @@ const recommendationSchema = new mongoose.Schema({
   price: String,
   image_url: String,
   label: String,
-  show_most_like: String,
+  show_most_like: [String],
   wishlist: String,
   in_cart: Boolean,
 });
 
 const Recommendation = mongoose.model('Recommendation', recommendationSchema);
 
-// const getInfo = (callback) => {
-//   Recommendation.find().then((pdts) =>{
-//     callback(null, pdts);
-//   }).catch(err =>{
-//     callback(err);
-//   })
-// };
-
-const getInfo = (callback) => {
-  Recommendation.find({}, (err, results) => {
+const getInfo = (id, callback) => {
+  Recommendation.find({ pid: id }, (err, results) => {
     callback(results);
   });
 };
