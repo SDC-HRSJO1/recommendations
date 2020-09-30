@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './main.module.css';
+import style from '../style/style.css.jsx';
 
 const Scroll = () => (
-  <div className={styles.scrollContainer}>
-    <button type="button" className={styles.circle}> &lt; </button>
-    <span className={styles.space}> </span>
-    <button type="button" className={styles.circle}> &gt; </button>
+  <div>
+    <button type="button" style={style.circle}> &lt; </button>
+    <span style={{ 'margin-left': '8px' }}> </span>
+    <button type="button" style={style.circle}> &gt; </button>
   </div>
 );
 

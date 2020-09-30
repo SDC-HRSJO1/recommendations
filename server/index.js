@@ -12,11 +12,9 @@ app.use(express.static(path.join(__dirname, '/../public/dist')));
 app.get('/:pid/recommendation/getInfo', (req, res) => {
   getInfo(req.params.pid, (data) => {
     const related = data[0].related_pid;
-    for (let i = 0; i < related.length; i += 1) {
-      getInfo(related, (eachData) => {
-        res.status(200).send(eachData);
-      });
-    }
+    getInfo(related, (eachData) => {
+      res.status(200).send(eachData);
+    });
   });
 });
 

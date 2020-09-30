@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Product from './product.jsx';
 import Scroll from './scroll.jsx';
-import styles from './main.module.css';
+import style from '../style/style.css.jsx';
+import main from './main.module.css';
 
 class Recommended extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Recommended extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/1/recommendation/getInfo')
+    axios.get('/2/recommendation/getInfo')
       .then((response) => {
         const productData = response.data;
         this.getProducts(productData);
@@ -32,11 +33,12 @@ class Recommended extends React.Component {
   }
 
   render() {
+    const { products } = this.state;
     return (
-      <div>
-        <h2 className={styles.title}> Recommended For You </h2>
+      <div className={main.container}>
+        <h2 style={style.title}> Recommended For You </h2>
         <Scroll />
-        <Product products={this.state.products} />
+        <Product products={products} />
       </div>
     );
   }
