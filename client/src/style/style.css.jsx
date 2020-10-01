@@ -1,5 +1,11 @@
+const container = {
+  width: '100%',
+  maxWidth: '82.5rem',
+  padding: ' 0px 0.75rem',
+  margin: '0px auto',
+};
+
 const title = {
-  paddingLeft: '40px',
   display: 'block',
   marginBlockStart: '0.83em',
   marginBlockEnd: '0.83em',
@@ -11,28 +17,32 @@ const title = {
   fontWeight: '400',
 };
 
-const scrollcontainer = {
-  display: 'flex',
-  paddingLeft: '40px',
-  paddingRight: '100px',
-  marginLeft: '1200px',
-};
-
 const circle = {
   backgroundColor: 'transparent',
   border: '1px solid rgb(224,224,224)',
   height: '32px',
   borderRadius: '50%',
-  '-moz-border-radius': '50%',
-  '-webkit-border-radius': '50%',
+  MozBorderRadius: '50%',
+  WebkitBorderradius: '50%',
   width: '32px',
   fontSize: '15px',
 };
 
-const container = {
+const productContainer = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  overflowX: 'scroll',
+  maxWidth: '100%',
+  margin: '0.75rem -1.09375rem 0px',
+};
+
+const product = {
+  fontSize: '16px',
   position: 'relative',
-  width: '100%',
-  'max-width': '286px',
+  lineHeight: '1.5625rem',
+  fontWeight: '500',
+  listStyle: 'none',
+  fontFamily: 'Nunito Sans, sans-serif',
 };
 
 const stars = {
@@ -48,28 +58,29 @@ const star = {
 };
 
 const bag = {
-  'font-size': '1rem',
-  'line-height': '1.5625rem',
-  'font-weight': '500',
+  fontSize: '1rem',
+  lineHeight: '1.5625rem',
+  fontWeight: '500',
   padding: '0.625rem',
   display: 'block',
   width: '100%',
-  'border-width': '1px',
-  'border-style': 'solid',
-  'border-radius': '4px',
-  'border-collapse': 'collapse',
-  'background-color': 'rgb(253,128,36)',
-  'border-color': 'rgb(253,128,36)',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderRadius: '4px',
+  borderCollapse: 'collapse',
+  backgroundColor: 'rgb(253,128,36)',
+  borderColor: 'rgb(253,128,36)',
   color: 'rgb(0,0,0)',
-  'font-family': 'Nunito Sans, sans-serif',
+  fontFamily: 'Nunito Sans, sans-serif',
 };
 
 export default {
+  container,
   title,
-  scrollcontainer,
   circle,
+  productContainer,
+  product,
   stars,
   star,
-  container,
   bag,
 };
