@@ -25,7 +25,7 @@ for (let i = 1; i < 101; i += 1) {
     reviews_count: faker.random.number(3000),
     price: faker.commerce.price(0.10, 100.00, 2, '$'),
     image_url: pictures[faker.random.number(pictures.length - 1)],
-    label: faker.commerce.department(),
+    label: faker.random.number({ min: 0, max: 3 }),
     show_most_like: [faker.commerce.productAdjective(), faker.commerce.productAdjective()],
     // wishlist: faker.random.boolean(),
     wishlist: faker.random.arrayElement(['Y', 'N']),
