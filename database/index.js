@@ -17,7 +17,7 @@ const recommendationSchema = new mongoose.Schema({
   reviews_count: Number,
   price: String,
   image_url: String,
-  label: String,
+  label: Number,
   show_most_like: [String],
   wishlist: String,
   in_cart: Boolean,
