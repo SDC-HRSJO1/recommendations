@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-class Button extends React.Component {
+class PageButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       num: 0,
       pagenum: this.props.current
-    }
+    };
     this.setNext = this.setNext.bind(this);
     this.setPrev = this.setPrev.bind(this);
   }
@@ -38,20 +38,30 @@ class Button extends React.Component {
 
   render() {
     return (
-      <div align="right">
+      <PageIndicateContainer>
         <p> {this.state.pagenum} / {this.props.totalPage} </p>
+        <span style={{ marginLeft: '8px' }}>  </span>
         <Circle onClick={this.setPrev}> &lt; </Circle>
         <span style={{ marginLeft: '8px' }}>  </span>
         <Circle Circle onClick={this.setNext}> &gt; </Circle>
-      </div>
-
+      </PageIndicateContainer>
     );
   }
 }
 
-export default Button;
+export default PageButton;
 
 /* Style */
+const PageIndicateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  font-family:'Nunito Sans, sans-serif';
+  font-size: 14px;
+  line-height: 1.43;
+`;
+
 const Circle = styled.button`
   background-color: transparent;
   border:1px solid rgb(224,224,224);

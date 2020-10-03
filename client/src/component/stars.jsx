@@ -10,11 +10,11 @@ const Stars = ({ stars }) => {
   // half star?
   return (
     <StarsContainer>
-      {widthPercentage >= 10 ? <GoldenStar style={{width: '15px', height: '15px' }} /> : <GrayStar style={{ width: '15px', height: '15px' }} /> }
-      {widthPercentage >= 30 ? <GoldenStar style={{width: '15px', height: '15px' }} /> : <GrayStar style={{ width: '15px', height: '15px' }} /> }
-      {widthPercentage >= 50 ? <GoldenStar style={{width: '15px', height: '15px' }} /> : <GrayStar style={{ width: '15px', height: '15px' }} /> }
-      {widthPercentage >= 70 ? <GoldenStar style={{width: '15px', height: '15px' }} /> : <GrayStar style={{ width: '15px', height: '15px' }} /> }
-      {widthPercentage >= 90 ? <GoldenStar style={{width: '15px', height: '15px' }} /> : <GrayStar style={{ width: '15px', height: '15px' }} /> }
+      {widthPercentage >= 10 ? <GoldenStar /> : <GrayStar /> }
+      {widthPercentage >= 30 ? <GoldenStar /> : <GrayStar /> }
+      {widthPercentage >= 50 ? <GoldenStar /> : <GrayStar /> }
+      {widthPercentage >= 70 ? <GoldenStar /> : <GrayStar /> }
+      {widthPercentage >= 90 ? <GoldenStar /> : <GrayStar /> }
     </StarsContainer>
   );
 };
