@@ -19,7 +19,7 @@ const recommendationSchema = new mongoose.Schema({
   image_url: String,
   label: Number,
   show_most_like: [String],
-  wishlist: String,
+  wishlist: Boolean,
   in_cart: Boolean,
 });
 

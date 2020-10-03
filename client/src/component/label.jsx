@@ -30,6 +30,4 @@ const TagLabel = styled.label`
   font-size: 0.75rem;
   background: rgb(255, 207, 0);
   background-size: cover;
-
-
 `;
