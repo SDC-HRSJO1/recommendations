@@ -19,6 +19,9 @@
       "@babel/preset-env"
     ]
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
