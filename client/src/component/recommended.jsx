@@ -15,12 +15,12 @@ class Recommended extends React.Component {
       current: 1,
       pageSize: 4, // product number in the page
       totalPage: 0,
-      translate: 0,
-      transition: 0.45
     };
     this.getUpdateState = this.getUpdateState.bind(this);
     this.pageNext = this.pageNext.bind(this);
     this.setPage = this.setPage.bind(this);
+    this.scollLeft = this.scollLeft.bind(this);
+    this.scollRight = this.scollRight.bind(this)
   }
 
   componentDidMount() {
@@ -53,18 +53,34 @@ class Recommended extends React.Component {
     this.setPage(num);
   }
 
+  scollLeft() {
+    document.getElementById('container').scrollLeft -= 600;
+  }
+
+  scollRight() {
+    document.getElementById('container').scrollLeft += 600;
+  }
+
   render() {
     return (
-      <Wrapper>
-        <Title> Recommended For You </Title>
-        <PageButton {...this.state} pageNext={this.pageNext} />
-        <ScrollContain>
-          {this.state.indexList.map((prdts) => (
-            <Carousel key={prdts.pid} prdts={prdts} />))}
-        </ScrollContain>
-        <ArrowLeft > Left </ArrowLeft>
-        <ArrowRight > Right </ArrowRight>
-      </Wrapper>
+      <RecommendBody>
+        <Wrapper>
+          <div>
+            <Title> Recommended For You </Title>
+          </div>
+          <div>
+            <PageButton {...this.state} pageNext={this.pageNext} />
+          </div>
+          <ContainWrapper id="wrapper">
+            <ArrowMove onClick={this.scollLeft}> &lt; </ArrowMove>
+            <ScrollContain id="container">
+              {this.state.indexList.map((prdts) => (
+                <Carousel key={prdts.pid} prdts={prdts} />))}
+            </ScrollContain>
+            <ArrowMove onClick={this.scollRight}> &gt; </ArrowMove>
+          </ContainWrapper>
+        </Wrapper>
+      </RecommendBody>
     );
   }
 }
@@ -72,16 +88,8 @@ class Recommended extends React.Component {
 export default Recommended;
 
 /* Style */
-const Title = styled.h2`
-  display: flex;
-  margin-block-start: 0.83em;
-  margin-block-end: 0.83em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-family: 'Nunito Sans, sans-serif';
-  font-size: 2rem;
-  line-height: 2.6876rem;
-  font-weight: 400;
+const RecommendBody = styled.div`
+  margin: 0px auto;
 `;
 
 const Wrapper = styled.div`
@@ -90,38 +98,41 @@ const Wrapper = styled.div`
   max-width: 100%;
   max-width: 82.5rem;
   overflow: hidden;
-  white-space: nowrap;
   @media screen and (max-width: 1024px) {
     scroll-behavior: smooth;
   }
 `;
-
-const ScrollContain = styled.div`
-  display:flex;
-  overflow: auto;
-  postion: relative;
-  transform: translateX(-${(props) => props.translate}px);
-  transition: transform ease-out ${(props) => props.transition}s;
+const Title = styled.h2`
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  font-family: 'Nunito Sans, sans-serif';
+  font-size: 2rem;
+  line-height: 2.6876rem;
+  font-weight: 400;
+  scroll-behavior: smooth; 
+`;
+const ContainWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center
 `;
 
-const ArrowLeft = styled.button`
+const ScrollContain = styled.div`
   display: flex;
-  position: absolute;
-  top: 50%;
+  overflow: auto;
+  postion: relative
+`;
+
+const ArrowMove = styled.button`
   height: 36px;
   width: 36px;
-  justify-content: center;
   background: transparent;
   border-radius: 50%;
   border:1px solid rgb(224,224,224);
   cursor: pointer;
-  align-items: center;
   transition: transform ease-in 0.1s;
   outline:none;
   &:hover {
     transform: scale(1.1);
   }
   `;
-const ArrowRight = styled(ArrowLeft)`
-  right: 0;
-`;

@@ -17,10 +17,10 @@ class PageButton extends React.Component {
       this.setState({
         num: this.state.num + this.props.pageSize,
         pagenum: this.state.pagenum + 1
-      }, function () {
+      }, () => {
         console.log(this.state)
         this.props.pageNext(this.state.num)
-      })
+      });
     }
   }
 
@@ -29,7 +29,7 @@ class PageButton extends React.Component {
       this.setState({
         num: this.state.num - this.props.pageSize,
         pagenum:this.state.pagenum - 1
-      },function () {
+      }, () => {
         console.log(this.state)
         this.props.pageNext(this.state.num)
       })
@@ -41,7 +41,7 @@ class PageButton extends React.Component {
       <PageIndicateContainer>
         <p> {this.state.pagenum} / {this.props.totalPage} </p>
         <span style={{ marginLeft: '8px' }}>  </span>
-        <Circle onClick={this.setPrev}> &lt; </Circle>
+        <Circle id= "left" onClick={this.setPrev}> &lt; </Circle>
         <span style={{ marginLeft: '8px' }}>  </span>
         <Circle Circle onClick={this.setNext}> &gt; </Circle>
       </PageIndicateContainer>

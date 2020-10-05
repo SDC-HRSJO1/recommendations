@@ -21,6 +21,7 @@ const recommendationSchema = new mongoose.Schema({
   show_most_like: [String],
   wishlist: Boolean,
   in_cart: Boolean,
+  description: String,
 });
 
 const Recommendation = mongoose.model('Recommendation', recommendationSchema);
