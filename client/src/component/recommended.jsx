@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
 import Carousel from './carousel';
 import PageButton from './pagebutton';
 
@@ -20,7 +19,7 @@ class Recommended extends React.Component {
     this.pageNext = this.pageNext.bind(this);
     this.setPage = this.setPage.bind(this);
     this.scollLeft = this.scollLeft.bind(this);
-    this.scollRight = this.scollRight.bind(this)
+    this.scollRight = this.scollRight.bind(this);
   }
 
   componentDidMount() {
@@ -65,19 +64,17 @@ class Recommended extends React.Component {
     return (
       <RecommendBody>
         <Wrapper>
-          <div>
+          <TitlePageButtonWrapper>
             <Title> Recommended For You </Title>
-          </div>
-          <div>
             <PageButton {...this.state} pageNext={this.pageNext} />
-          </div>
+          </TitlePageButtonWrapper>
           <ContainWrapper id="wrapper">
-            <ArrowMove onClick={this.scollLeft}> &lt; </ArrowMove>
+            {/*<ArrowMove onClick={this.scollLeft}> &lt; </ArrowMove> */}
             <ScrollContain id="container">
               {this.state.indexList.map((prdts) => (
                 <Carousel key={prdts.pid} prdts={prdts} />))}
             </ScrollContain>
-            <ArrowMove onClick={this.scollRight}> &gt; </ArrowMove>
+            {/* <ArrowMove onClick={this.scollRight}> &gt; </ArrowMove> */}
           </ContainWrapper>
         </Wrapper>
       </RecommendBody>
@@ -90,37 +87,34 @@ export default Recommended;
 /* Style */
 const RecommendBody = styled.div`
   margin: 0px auto;
+  padding-bottom: 2rem;
 `;
 
 const Wrapper = styled.div`
-  padding: 0px 0.75rem;
-  margin: 0px auto;
   max-width: 100%;
   max-width: 82.5rem;
-  overflow: hidden;
-  @media screen and (max-width: 1024px) {
-    scroll-behavior: smooth;
-  }
 `;
+const TitlePageButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
 const Title = styled.h2`
-  margin-block-start: 0.83em;
-  margin-block-end: 0.83em;
-  font-family: 'Nunito Sans, sans-serif';
+  font-family: Cera Pro, sans-serif;
   font-size: 2rem;
   line-height: 2.6876rem;
   font-weight: 400;
-  scroll-behavior: smooth; 
+  scroll-behavior: smooth;
 `;
 const ContainWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center
+  align-items: center;
 `;
 
 const ScrollContain = styled.div`
   display: flex;
-  overflow: auto;
-  postion: relative
+  position: relative
 `;
 
 const ArrowMove = styled.button`

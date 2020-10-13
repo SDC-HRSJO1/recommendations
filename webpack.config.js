@@ -29,7 +29,6 @@ module.exports = {
     path: path.join(__dirname, '/public/dist'),
   },
   resolve: {
-
     extensions: ['.js', '.jsx'],
   },
 

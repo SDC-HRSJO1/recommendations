@@ -8,7 +8,6 @@ const port = 1234;
 
 app.use(express.static(path.join(__dirname, '/../public/dist')));
 
-// get fn for the related pdts
 app.get('/:pid/recommendation/getInfo', (req, res) => {
   getInfo(req.params.pid, (data) => {
     const related = data[0].related_pid;

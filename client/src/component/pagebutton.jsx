@@ -41,9 +41,9 @@ class PageButton extends React.Component {
       <PageIndicateContainer>
         <p> {this.state.pagenum} / {this.props.totalPage} </p>
         <span style={{ marginLeft: '8px' }}>  </span>
-        <Circle id= "left" onClick={this.setPrev}> &lt; </Circle>
+        <Circle  onClick={this.setPrev}> &lt; </Circle>
         <span style={{ marginLeft: '8px' }}>  </span>
-        <Circle Circle onClick={this.setNext}> &gt; </Circle>
+        <Circle  onClick={this.setNext}> &gt; </Circle>
       </PageIndicateContainer>
     );
   }
@@ -73,3 +73,4 @@ const Circle = styled.button`
   font-size: 15px;
   outline:none;
 `;
+

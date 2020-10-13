@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-
-mongoose.connect('mongodb://localhost/legodata');
+mongoose.connect('mongodb://database/legodata');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

@@ -11,8 +11,8 @@ const TooltipItem = ({details}) => (
         {' '}
       </span>
       <li> Shop more like this:</li>
-      {details.show_most_like.map(show=>(
-        <span style={{textDecoration: 'underline' }} key={show}>
+      {details.show_most_like.map((show,i) => (
+        <span style={{ textDecoration: 'underline' }} key={show + i}>
           {' '}
           {show}
           {' '}
@@ -20,6 +20,6 @@ const TooltipItem = ({details}) => (
       ))}
     </ul>
   </div>
-)
+);
 
 export default TooltipItem;

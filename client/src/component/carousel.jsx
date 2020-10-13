@@ -35,20 +35,17 @@ export default Carousel;
 /* Style */
 
 const ProductContainer = styled.div`
-  padding: 5px 38px;
+  height: 100%;
+  padding: 0 1.8rem;
   max-width: 100%;
   margin: 0.75rem -1.09375rem 0px;
   font-size: 16px;
   line-height: 1.5625rem;
   font-weight: 500;
   list-style: none;
-  font-family: Nunito Sans, sans-serif;
+  font-family: Cera Pro, sans-serif;
   border: 2px solid transparent;
   position: relative;
-  :hover{
-    border-color:rgb(0, 109, 183);
-  }
-
 `;
 
 const Picture = styled.img`
@@ -62,7 +59,7 @@ const Picture = styled.img`
 
 const ToolTipText = styled.div`
   visibility: hidden;
-  width: 400px;
+  width: 80%;
   background-color: white;
   color: rgb(0, 109, 183);
   font-size: 0.875rem;
@@ -87,10 +84,12 @@ const ToolTipText = styled.div`
   }
 
   /* Position the tooltip */
-  top: 40%;
-  left: 105%;
+  top: 20%;
+  left: 50%;
   position: absolute;
   z-index: 1;
+
+
   ${ProductContainer}:hover & {
     visibility: visible;
     opacity: 1;
@@ -107,20 +106,21 @@ const ImageContainer = styled.div`
 `;
 
 const BagButton = styled.button`
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.625rem;
-  display: block;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 4px;
-  border-collapse: collapse;
-  background-color: rgb(253,128,36);
-  border-color: rgb(253,128,36);
-  color: rgb(0,0,0);
-  font-family: Nunito Sans, sans-serif;
-  &:hover {
-    background-color: transparent;
-  }
+outline-style: none;
+font-size: 1rem;
+font-weight: 500;
+padding: 0.625rem;
+display: block;
+width: 100%;
+border-width: 1px;
+border-style: solid;
+border-radius: 4px;
+border-collapse: collapse;
+background-color: rgb(253,128,36);
+border-color: rgb(253,128,36);
+color: rgb(0,0,0);
+font-family: Cera Pro, sans-serif;
+&:hover {
+  background-color: transparent;
+}
 `;
