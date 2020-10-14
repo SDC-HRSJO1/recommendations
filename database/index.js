@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://database/legodata');
 
+mongoose.connect('mongodb://localhost/legodata', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.on('open', () => {
-  console.log('successfully connected');
+  console.log('mongoose successfully connected');
 });
 
 const recommendationSchema = new mongoose.Schema({

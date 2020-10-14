@@ -41,5 +41,8 @@ const ButtonHeart = styled.button`
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   font-size: 15px;
-  outline:none;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;

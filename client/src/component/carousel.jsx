@@ -112,7 +112,7 @@ font-weight: 500;
 padding: 0.625rem;
 display: block;
 width: 100%;
-border-width: 1px;
+border-width: 2px;
 border-style: solid;
 border-radius: 4px;
 border-collapse: collapse;
@@ -122,5 +122,6 @@ color: rgb(0,0,0);
 font-family: Cera Pro, sans-serif;
 &:hover {
   background-color: transparent;
+  cursor: pointer;
 }
 `;

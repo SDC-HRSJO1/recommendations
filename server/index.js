@@ -17,6 +17,22 @@ app.get('/:pid/recommendation/getInfo', (req, res) => {
   });
 });
 
+app.get('/:pid', (req, res) => {
+  res.status(200).send('get');
+});
+
+app.post('/', (req, res) => {
+  res.status(201).send('post');
+});
+
+app.put('/:pid', (req, res) => {
+  res.status(204).send('put');
+});
+
+app.delete('/:pid', (req, res) => {
+  res.status(204).send('delete');
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
