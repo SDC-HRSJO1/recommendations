@@ -1,4 +1,4 @@
-# Recommendation
+# Recommendations
 > This is a front-end recreation of the recommendations component on Lego. Based on the original functionality and style, the carousel is added to show more recommended items.
 
 
