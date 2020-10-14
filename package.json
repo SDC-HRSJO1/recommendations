@@ -1,15 +1,13 @@
 {
-  "name": "recommendation",
+  "name": "recommendations",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "node server",
     "build": "webpack",
     "react": "webpack -d -w",
-    "server": "nodemon server/index.js",
+    "server": "nodemon server",
     "seed": "node database/seed.js",
-    "docker": "node database/seed.js && node server/index.js",
+    "docker": "node database/seed.js && node server",
     "test": "jest"
   },
   "repository": {
@@ -25,19 +23,11 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aubreylting/recommendation/issues"
-  },
-  "homepage": "https://github.com/aubreylting/recommendation#readme",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
     "enzyme": "^3.11.0",
