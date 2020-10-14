@@ -71,6 +71,9 @@ const Circle = styled.button`
   -webkit-border-radius: 50%;
   width: 32px;
   font-size: 15px;
-  outline:none;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
