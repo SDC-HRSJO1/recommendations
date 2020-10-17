@@ -4,6 +4,7 @@ LICENSE
 npm-debug.log
 Dockerfile
 docker-compose.yml
+*.csv
 products.csv
 1Mproducts.csv
 10Mproducts.csv

@@ -2,13 +2,13 @@ const faker = require('faker');
 const fs = require('fs');
 
 const records = 10000000;
-const products = fs.createWriteStream('products.csv');
-products.write('id,department,category,subcategory,brand,price,title,description,tag,rating,review_count\n', 'utf8');
+const csv = fs.createWriteStream('products.csv');
+csv.write('id,department,category,subcategory,brand,price,title,description,tag,rating,review_count\n');
 
-const generateData = (file, encoding, callback) => {
+const generateData = (file, callback) => {
   let count = 0;
 
-  const write = () => {
+  const seed = () => {
     let status = true;
     while (count < records && status === true) {
       count += 1;
@@ -25,16 +25,16 @@ const generateData = (file, encoding, callback) => {
       const reviewCount = faker.random.number({ min: 0, max: 1000 });
       const data = `${id},${department},${category},${subcategory},${brand},${price},${title},${description},${tag},${rating},${reviewCount}\n`;
       if (count === records) {
-        file.write(data, 'utf8', callback);
+        file.write(data, callback);
       } else {
-        status = file.write(data, 'utf8');
+        status = file.write(data);
       }
     }
     if (count < records) {
-      file.once('drain', write);
+      file.once('drain', seed);
     }
   };
-  write();
+  seed();
 };
 
-generateData(products, 'utf8', () => { products.end(); });
+generateData(csv, () => { csv.end(); });
