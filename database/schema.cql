@@ -6,6 +6,7 @@ CREATE TABLE products.recommendations (
   category_1 text,
   category_2 text,
   category_3 text,
+  price int,
   id int,
   PRIMARY KEY ((brand, category_1, category_2, category_3), price)
 );
