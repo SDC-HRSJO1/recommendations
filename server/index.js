@@ -8,7 +8,7 @@ const port = 1234;
 
 app.use(express.static(path.join(__dirname, '/../public/dist')));
 
-app.get('/:pid/recommendation/getInfo', (req, res) => {
+app.get('/:pid/recommendations', (req, res) => {
   getInfo(req.params.pid, (data) => {
     const related = data[0].related_pid;
     getInfo(related, (eachData) => {
@@ -21,7 +21,7 @@ app.get('/:pid', (req, res) => {
   res.status(200).send('get');
 });
 
-app.post('/', (req, res) => {
+app.post('/new', (req, res) => {
   res.status(201).send('post');
 });
 

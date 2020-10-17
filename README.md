@@ -8,9 +8,10 @@
 
 
 ## Usage
-1. Install all dependencies
-2. Run 'npm run react-dev' to transpile.
-3. Run 'npm run start-server' and navigate to localhost:1234 in the browser.
+1. npm i
+2. npm run build
+3. npm start
+4. http://localhost:1234/
 
 
 ## API
@@ -46,7 +47,7 @@ Request: new product
   rating: number,
   reviews: number,
   category: string (faker.commerce.productMaterial()),
-  subcategory 1: string (faker.commerce.department()),
+  subcategory_1: string (faker.commerce.department()),
   subcategory 2: string (faker.commerce.productAdjective()),
 }
 ```
