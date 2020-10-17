@@ -1,7 +1,7 @@
 const faker = require('faker');
 const fs = require('fs');
 
-const records = 1000000;
+const records = 10000000;
 const products = fs.createWriteStream('products.csv');
 products.write('id,department,category,subcategory,brand,price,title,description,tag,rating,review_count\n', 'utf8');
 

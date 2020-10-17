@@ -2,3 +2,8 @@ node_modules
 .git*
 LICENSE
 npm-debug.log
+Dockerfile
+docker-compose.yml
+products.csv
+1Mproducts.csv
+10Mproducts.csv
