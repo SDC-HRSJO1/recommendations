@@ -11,4 +11,7 @@ logs
 *.log
 
 # Compiled Dirs
-dist/
+bundle.js
+docker-compose.yml
+Dockerfile
+products.csv
