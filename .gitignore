@@ -12,5 +12,6 @@ logs
 
 # Compiled Dirs
 bundle.js
-Dockerfile
 docker-compose.yml
+Dockerfile
+*.csv

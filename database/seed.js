@@ -17,7 +17,7 @@ const generateArray = () => {
 };
 
 for (let i = 1; i < 101; i += 1) {
-  const brandName = faker.company.bsBuzz();
+  const brandName = faker.company.catchPhraseAdjective();
   console.log(`Product #${i} Brand: ${brandName}`);
   products.push({
     _id: i,
