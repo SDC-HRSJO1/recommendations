@@ -39,6 +39,7 @@ Response: array of recommended products
 Request: new product
 ```
 {
+  id: number,
   brand: string,
   title: string,
   description: string,
@@ -47,9 +48,9 @@ Request: new product
   price: number,
   rating: number,
   reviews: number,
+  department: string (faker.commerce.department()),
   category: string (faker.commerce.productMaterial()),
-  subcategory_1: string (faker.commerce.department()),
-  subcategory 2: string (faker.commerce.productAdjective()),
+  subcategory: string (faker.commerce.productAdjective()),
 }
 ```
 Response: 201
