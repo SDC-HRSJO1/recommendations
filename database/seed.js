@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const faker = require('faker');
-const { Recommendation } = require('./index.js');
+const { Recommendations } = require('./index.js');
 
 const pictures = [];
 for (let j = 1; j < 11; j += 1) {
@@ -17,10 +17,13 @@ const generateArray = () => {
 };
 
 for (let i = 1; i < 101; i += 1) {
+  const brandName = faker.company.bsBuzz();
+  console.log(`Product #${i} Brand: ${brandName}`);
   products.push({
-    pid: i,
+    _id: i,
     related_pid: generateArray(),
-    name: `Lego ${faker.commerce.productName()}`,
+    brand: brandName,
+    name: faker.commerce.productName(),
     rating: faker.random.number({ min: 0, max: 5, precision: 0.01 }),
     reviews_count: faker.random.number(3000),
     price: faker.commerce.price(0.10, 100.00, 2, '$'),
@@ -30,21 +33,19 @@ for (let i = 1; i < 101; i += 1) {
     // wishlist: faker.random.boolean(),
     wishlist: false,
     in_cart: false,
-    description: faker.lorem.sentences(),
+    description: faker.commerce.productDescription(),
   });
 }
 
-Recommendation.deleteMany({}, (err) => {
+Recommendations.deleteMany({}, (err) => {
   if (err) {
-    console.error('Remove', err);
+    console.error('Remove error:', err);
   }
-  Recommendation.insertMany(products, (error, results) => {
+  Recommendations.insertMany(products, (error, results) => {
     if (error) {
       console.log(error);
     }
-    console.log('sucessfully seed');
-    console.log(results[0]);
-
     mongoose.connection.close();
+    console.log(`${results.length} products added to the database.\nMongoose connection closed.`);
   });
 });

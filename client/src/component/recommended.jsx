@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -23,9 +24,10 @@ class Recommended extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/2/recommendation/getInfo')
+    axios.get('/2/recommendations')
       .then((response) => {
         const productData = response.data;
+        console.log(productData);
         this.getUpdateState(productData);
         this.setPage(this.state.current);
       })
@@ -65,14 +67,14 @@ class Recommended extends React.Component {
       <RecommendBody>
         <Wrapper>
           <TitlePageButtonWrapper>
-            <Title> Recommended For You </Title>
+            <Title> Recommended For You</Title>
             <PageButton {...this.state} pageNext={this.pageNext} />
           </TitlePageButtonWrapper>
           <ContainWrapper id="wrapper">
             {/*<ArrowMove onClick={this.scollLeft}> &lt; </ArrowMove> */}
             <ScrollContain id="container">
-              {this.state.indexList.map((prdts) => (
-                <Carousel key={prdts.pid} prdts={prdts} />))}
+              {this.state.indexList.map((product) => (
+                <Carousel key={`${product._id}: ${product}`} prdts={product} />))}
             </ScrollContain>
             {/* <ArrowMove onClick={this.scollRight}> &gt; </ArrowMove> */}
           </ContainWrapper>
