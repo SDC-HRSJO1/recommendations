@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const { getInfo } = require('../database/index.js');
 
@@ -7,6 +8,7 @@ const app = express();
 const port = 1234;
 
 app.use(express.static(path.join(__dirname, '/../public/dist')));
+app.use(morgan('tiny'));
 
 app.get('/:pid/recommendations', (req, res) => {
   getInfo(req.params.pid, (data) => {
