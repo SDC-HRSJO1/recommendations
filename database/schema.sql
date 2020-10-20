@@ -2,10 +2,10 @@ drop database if exists recommendations;
 
 create database recommendations;
 
-use recommendations;
+\c recommendations;
 
 create table products (
-  id int not null serial PRIMARY KEY,
+  id serial PRIMARY KEY,
   department varchar(150),
   category varchar(150),
   subcategory varchar(150),
@@ -13,7 +13,13 @@ create table products (
   price decimal(10, 2) not null,
   title varchar(150) not null,
   description varchar(750) not null,
-  tag int(1) not null,
+  image varchar(150) not null,
+  tag int not null,
   rating decimal(3, 2) not null,
-  review_count int(5) not null,
+  review_count int not null
 );
+
+copy products (id, department, category, subcategory, brand, price, title, description, image, tag, rating, review_count)
+from '/Users/eric/Documents/projects/SDC/recommendations/database/10Mproducts.csv'
+DELIMITER ';'
+CSV HEADER;
