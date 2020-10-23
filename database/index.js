@@ -1,58 +1,43 @@
-const mongoose = require('mongoose');
+const cassandra = require('cassandra-driver');
+const Promise = require('bluebird');
 
-mongoose.connect('mongodb://localhost/legodata', { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Connection error.'));
-db.on('open', () => {
-  console.log('Mongoose connection opened.');
+const client = new cassandra.Client({
+  contactPoints: ['localhost'],
+  localDataCenter: 'datacenter1',
+  keyspace: 'products',
+  promiseFactory: Promise.fromCallback,
 });
 
-const recommendationSchema = new mongoose.Schema({
-  _id: Number,
-  related_pid: [Number],
-  brand: String,
-  name: String,
-  rating: Number,
-  reviews_count: Number,
-  price: String,
-  image_url: String,
-  label: Number,
-  show_most_like: [String],
-  wishlist: Boolean,
-  in_cart: Boolean,
-  description: String,
-});
-
-const Recommendations = mongoose.model('Recommendations', recommendationSchema);
-
-const getInfo = (pid, callback) => {
-  Recommendations.find({ _id: pid }, (err, results) => {
-    callback(results);
-  });
-};
-
-const insertProduct = (newProduct, callback) => {
-  Recommendations.create(newProduct, (err, results) => {
-    callback(results);
-  });
-};
-
-const updateProduct = (pid, updates, callback) => {
-  Recommendations.findByIdAndUpdate(pid, updates, (err, results) => {
-    callback(results);
-  });
-};
-
-const deleteProduct = (pid, callback) => {
-  Recommendations.findByIdAndDelete(pid, (err, results) => {
-    callback(results);
-  });
+const getRecs = (pid, callback) => {
+  client.execute(`select department, category, subcategory, brand from products.info where id = ${pid}`)
+    .then((categories) => {
+      console.log('response.rows[0]:', categories.rows[0]);
+      const { department, category, subcategory, brand } = categories.rows[0];
+      client.execute(`select id from products.recommendations where department = '${department}' and category = '${category}' and subcategory = '${subcategory}' and brand = '${brand}'`)
+        .then((recIds) => {
+          console.log('Recommendations:', recIds.rows);
+          const ids = recIds.rows.map(({ id }) => id);
+          console.log('ids:', ids);
+          client.execute(`select brand, title, description, image, price, tag, rating, review_count from products.info where id in (${ids.toString()})`)
+            .then((resultProducts) => {
+              callback(null, resultProducts.rows);
+            })
+            .catch((productError) => {
+              console.error('productError:', productError);
+              callback(productError);
+            });
+        })
+        .catch((idError) => {
+          console.error('idError:', idError);
+          callback(idError);
+        });
+    })
+    .catch((categoryError) => {
+      console.error('categoryError:', categoryError);
+      callback(categoryError);
+    });
 };
 
 module.exports = {
-  Recommendations,
-  getInfo,
-  insertProduct,
-  updateProduct,
-  deleteProduct,
+  getRecs,
 };
