@@ -20,18 +20,18 @@ Request: pid (number)\
 Response: array of recommended products
 ```
 [{
-  id: number,
-  brand: string,
-  title: string,
-  description: string,
-  image: string,
-  tag: number,
-  price: number,
-  rating: number,
-  reviews: number,
-  department: string (faker.commerce.department()),
-  category: string (faker.commerce.productMaterial()),
-  subcategory: string (faker.commerce.productAdjective()),
+  id int,
+  department text,
+  category text,
+  subcategory text,
+  brand text,
+  price decimal,
+  title text,
+  description text,
+  image text,
+  tag int,
+  rating decimal,
+  review_count int,
 }]
 ```
 
@@ -39,18 +39,18 @@ Response: array of recommended products
 Request: new product
 ```
 {
-  id: number,
-  brand: string,
-  title: string,
-  description: string,
-  image: string,
-  tag: number,
-  price: number,
-  rating: number,
-  reviews: number,
-  department: string (faker.commerce.department()),
-  category: string (faker.commerce.productMaterial()),
-  subcategory: string (faker.commerce.productAdjective()),
+  id int,
+  department text,
+  category text,
+  subcategory text,
+  brand text,
+  price decimal,
+  title text,
+  description text,
+  image text,
+  tag int,
+  rating decimal,
+  review_count int,
 }
 ```
 Response: 201
@@ -59,8 +59,8 @@ Response: 201
 Request: pid (number), product properties to update
 ```
 {
-  title: string,
-  price: number,
+  title text,
+  price decimal,
 }
 ```
 Response: 204
