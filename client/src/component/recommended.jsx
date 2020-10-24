@@ -1,3 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-console */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
@@ -9,6 +13,7 @@ class Recommended extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      pid: Math.ceil(Math.random() * 10000000),
       totalData: [],
       totalNum: 0,
       indexList: [], // current page
@@ -24,7 +29,7 @@ class Recommended extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/2/recommendations')
+    axios.get(`/${this.state.pid}`)
       .then((response) => {
         const productData = response.data;
         console.log(productData);
@@ -37,16 +42,18 @@ class Recommended extends React.Component {
   }
 
   getUpdateState(data) {
+    const { pageSize } = this.state;
     this.setState({
       totalData: data,
       totalNum: data.length,
-      totalPage: Math.ceil(data.length/this.state.pageSize),
+      totalPage: Math.ceil(data.length / pageSize),
     });
   }
 
   setPage(num) {
+    const { pageSize, totalData } = this.state;
     this.setState({
-      indexList: this.state.totalData.slice(num, num + this.state.pageSize),
+      indexList: totalData.slice(num, num + pageSize),
     });
   }
 
@@ -67,14 +74,14 @@ class Recommended extends React.Component {
       <RecommendBody>
         <Wrapper>
           <TitlePageButtonWrapper>
-            <Title> Recommended For You</Title>
+            <Title>{`Recommended For You (Current: Product #${this.state.pid})`}</Title>
             <PageButton {...this.state} pageNext={this.pageNext} />
           </TitlePageButtonWrapper>
           <ContainWrapper id="wrapper">
-            {/*<ArrowMove onClick={this.scollLeft}> &lt; </ArrowMove> */}
+            {/* <ArrowMove onClick={this.scollLeft}> &lt; </ArrowMove> */}
             <ScrollContain id="container">
               {this.state.indexList.map((product) => (
-                <Carousel key={`${product._id}: ${product}`} prdts={product} />))}
+                <Carousel key={`${product.id}: ${product.brand} ${product.title}`} product={product} />))}
             </ScrollContain>
             {/* <ArrowMove onClick={this.scollRight}> &gt; </ArrowMove> */}
           </ContainWrapper>
@@ -119,16 +126,16 @@ const ScrollContain = styled.div`
   position: relative
 `;
 
-const ArrowMove = styled.button`
-  height: 36px;
-  width: 36px;
-  background: transparent;
-  border-radius: 50%;
-  border:1px solid rgb(224,224,224);
-  cursor: pointer;
-  transition: transform ease-in 0.1s;
-  outline:none;
-  &:hover {
-    transform: scale(1.1);
-  }
-  `;
+// const ArrowMove = styled.button`
+//   height: 36px;
+//   width: 36px;
+//   background: transparent;
+//   border-radius: 50%;
+//   border:1px solid rgb(224,224,224);
+//   cursor: pointer;
+//   transition: transform ease-in 0.1s;
+//   outline:none;
+//   &:hover {
+//     transform: scale(1.1);
+//   }
+//   `;

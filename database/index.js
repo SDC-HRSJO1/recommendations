@@ -17,7 +17,7 @@ const getRecs = (pid, callback) => {
           const ids = recIds.rows.map(({ id }) => id);
           // const ids = recIds.rows.map((product) => product.id);
           console.log('ids:', ids);
-          pool.query(`select brand, title, description, image, price, tag, rating, review_count from info where id in (${ids.toString()})`)
+          pool.query(`select * from info where id in (${ids.toString()})`)
             .then((resultProducts) => {
               callback(null, resultProducts.rows);
             })
