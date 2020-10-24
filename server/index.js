@@ -2,7 +2,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const db = require('../database/index.js');
+const db = require('../database/dbPost.js');
+// const db = require('../database/dbCass.js');
 // const { getInfo } = require('../database/dbMongo.js');
 
 const app = express();
