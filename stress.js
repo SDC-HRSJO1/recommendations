@@ -16,6 +16,15 @@ export let options = {
     { duration: '1m', target: 1000 },
     { duration: '6m', target: 1000 },
     { duration: '1m', target: 0 },
+    // { duration: ‘1m’, target: 1 }, // below normal load
+    // { duration: ‘2m’, target: 1 },
+    // { duration: ‘1m’, target: 10 },
+    // { duration: ‘2m’, target: 10 },
+    // { duration: ‘1m’, target: 100 },
+    // { duration: ‘2m’, target: 100 },
+    // { duration: ‘1m’, target: 1000 },
+    // { duration: ‘2m’, target: 1000 },
+    // { duration: ‘2m’, target: 0 },
   ],
 };
 
