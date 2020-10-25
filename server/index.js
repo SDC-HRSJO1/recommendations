@@ -1,52 +1,35 @@
 /* eslint-disable no-console */
-require('newrelic');
 const express = require('express');
-// const morgan = require('morgan');
 const path = require('path');
-const db = require('../database/dbPost.js');
-// const db = require('../database/dbCass.js');
-// const { getInfo } = require('../database/dbOriginal.js');
+const db = require('../database/index.js');
+require('newrelic');
 
 const app = express();
-
-const port = 1234;
-
 app.use(express.static(path.join(__dirname, '/../public/dist')));
-// app.use(morgan('tiny'));
-
-// app.get('/:pid/recommendations', (req, res) => {
-//   getInfo(req.params.pid, (data) => {
-//     const related = data[0].related_pid;
-//     getInfo(related, (eachData) => {
-//       console.log(eachData);
-//       res.status(200).send(eachData);
-//     });
-//   });
-// });
 
 app.get('/:pid', (req, res) => {
-  db.getRecs(req.params.pid, (error, data) => {
-    if (error) {
-      res.status(404).send('error');
+  db.getRecs(req.params.pid, (err, data) => {
+    if (err) {
+      res.status(404);
     } else {
-      // console.log('data:', data);
       res.status(200).send(data);
     }
   });
 });
 
 app.post('/new', (req, res) => {
-  res.status(201).send('post');
+  res.status(201);
 });
 
 app.put('/:pid', (req, res) => {
-  res.status(204).send('put');
+  res.status(204);
 });
 
 app.delete('/:pid', (req, res) => {
-  res.status(204).send('delete');
+  res.status(204);
 });
 
+const port = 1234;
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
