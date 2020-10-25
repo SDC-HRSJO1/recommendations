@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
+require('newrelic');
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require('path');
 const db = require('../database/dbPost.js');
 // const db = require('../database/dbCass.js');
@@ -11,7 +12,7 @@ const app = express();
 const port = 1234;
 
 app.use(express.static(path.join(__dirname, '/../public/dist')));
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 
 // app.get('/:pid/recommendations', (req, res) => {
 //   getInfo(req.params.pid, (data) => {
@@ -28,7 +29,7 @@ app.get('/:pid', (req, res) => {
     if (error) {
       res.status(404).send('error');
     } else {
-      console.log('data:', data);
+      // console.log('data:', data);
       res.status(200).send(data);
     }
   });

@@ -32,7 +32,7 @@ class Recommended extends React.Component {
     axios.get(`/${this.state.pid}`)
       .then((response) => {
         const productData = response.data;
-        console.log(productData);
+        // console.log(productData);
         this.getUpdateState(productData);
         this.setPage(this.state.current);
       })
