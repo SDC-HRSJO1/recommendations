@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const db = require('../database/index.js');
-require('newrelic');
 
 const app = express();
 app.use(express.static(path.join(__dirname, '/../public/dist')));
 
 app.get('/:pid', (req, res) => {
-  db.getRecs(req.params.pid, (err, data) => {
+  db.getRecs(req.params.pid, (err, recs) => {
     if (err) {
       res.status(404);
     } else {
-      res.status(200).send(data);
+      res.status(200).send(recs);
     }
   });
 });
@@ -30,6 +30,4 @@ app.delete('/:pid', (req, res) => {
 });
 
 const port = 1234;
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
-});
+app.listen(port, () => { console.log(`listening on port ${port}`); });

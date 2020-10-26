@@ -15,3 +15,4 @@ bundle.js
 docker-compose.yml
 Dockerfile
 *.csv
+newrelic.js

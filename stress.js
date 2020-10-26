@@ -12,6 +12,6 @@ export const options = {
 };
 
 export default () => {
-  http.get('http://localhost:1234/8888888/');
+  http.get('http://localhost:1234/5591210');
   sleep(1);
 };
