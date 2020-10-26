@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import Stars from './stars';
@@ -5,26 +6,26 @@ import Label from './label';
 import Wishlist from './wishlist';
 import TooltipItem from './tooltipitem';
 
-const Carousel = ({ prdts }) => (
+const Carousel = ({ product }) => (
   <ProductContainer>
     <ImageContainer>
-      <Picture src={prdts.image_url} alt={prdts.name} />
-      <Wishlist wishlist={prdts.wishlist} />
-      <Label label={prdts.label} />
+      <Picture src={product.image} alt={product.title} />
+      <Wishlist wishlist={false} />
+      <Label label={product.tag} />
     </ImageContainer>
-    <ToolTipText><TooltipItem details={prdts} /></ToolTipText>
+    <ToolTipText><TooltipItem product={product} /></ToolTipText>
     <div>
-      {prdts.name}
+      {`${product.brand} ${product.title}`}
     </div>
     <div>
-      <Stars stars={prdts.rating} />
-      {`(${prdts.rating.toFixed(2)})`}
+      <Stars stars={product.rating} />
+      {`(${product.rating})`}
     </div>
     <div>
-      {`Reviews (${prdts.reviews_count})`}
+      {`Reviews (${product.review_count})`}
     </div>
     <div style={{ fontWeight: 'bold' }}>
-      {prdts.price}
+      {product.price}
     </div>
     <BagButton> Add to Bag </BagButton>
 
@@ -49,7 +50,7 @@ const ProductContainer = styled.div`
 `;
 
 const Picture = styled.img`
-  object-fit: fit;
+  object-fit: contain;
   width:100%;
   height:100%;
   &:hover {

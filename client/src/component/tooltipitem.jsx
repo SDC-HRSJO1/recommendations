@@ -1,25 +1,29 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-const TooltipItem = ({details}) => (
-  <div>
-    <ul>
-      <li>Description:</li>
-      <span>
-        {' '}
-        {details.description}
-        {' '}
-      </span>
-      <li> Shop more like this:</li>
-      {details.show_most_like.map((show,i) => (
-        <span style={{ textDecoration: 'underline' }} key={show + i}>
+const TooltipItem = ({ product }) => {
+  const categories = [product.department, product.category, product.subcategory];
+  return (
+    <div>
+      <ul>
+        <li>Description:</li>
+        <span>
           {' '}
-          {show}
+          {product.description}
           {' '}
         </span>
-      ))}
-    </ul>
-  </div>
-);
+        <li> Shop more like this:</li>
+        {categories.map((category) => (
+          <span style={{ textDecoration: 'underline' }} key={category}>
+            {' '}
+            {category}
+            {' '}
+          </span>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default TooltipItem;

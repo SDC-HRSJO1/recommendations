@@ -19,7 +19,7 @@ const getRecs = (pid, callback) => {
           const ids = recIds.rows.map(({ id }) => id);
           // const ids = recIds.rows.map((product) => product.id);
           console.log('ids:', ids);
-          client.execute(`select brand, title, description, image, price, tag, rating, review_count from products.info where id in (${ids.toString()})`)
+          client.execute(`select * from products.info where id in (${ids.toString()})`)
             .then((resultProducts) => {
               callback(null, resultProducts.rows);
             })
