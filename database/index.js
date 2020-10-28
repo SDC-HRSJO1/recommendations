@@ -5,20 +5,8 @@ const { Pool } = require('pg');
 const pool = new Pool({ database: 'products' });
 
 const getRecs = (pid, callback) => {
-  pool.query(`select department,category,subcategory,brand from info where id=${pid}`)
-    .then(cat => {
-      const { department, category, subcategory, brand } = cat.rows[0];
-      return pool.query(`select id from recommendations where department='${department}' and category='${category}' and subcategory='${subcategory}' and brand='${brand}'`);
-    })
-    .then(recs => {
-      const { rows } = recs;
-      const len = rows.length;
-      for (let i = 0; i < len; i += 1) {
-        rows[i] = rows[i].id;
-      }
-      return pool.query(`select * from info where id in (${rows})`);
-    })
-    .then(info => { callback(null, info.rows); })
+  pool.query(`select t2.* from info t1 inner join info t2 on t1.id=${pid} and t2.id!=${pid} and t1.department=t2.department and t1.category=t2.category and t1.subcategory=t2.subcategory and t1.brand=t2.brand`)
+    .then(rec => { callback(null, rec.rows); })
     .catch(() => { callback('db'); });
 };
 

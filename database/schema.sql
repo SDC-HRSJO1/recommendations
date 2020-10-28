@@ -4,13 +4,13 @@ create database products;
 
 \c products;
 
-create table recommendations (
-  id serial PRIMARY KEY,
-  department varchar(150),
-  category varchar(150),
-  subcategory varchar(150),
-  brand varchar(150) not null
-);
+-- create table recommendations (
+--   id serial PRIMARY KEY,
+--   department varchar(150),
+--   category varchar(150),
+--   subcategory varchar(150),
+--   brand varchar(150) not null
+-- );
 
 create table info (
   id serial PRIMARY KEY,
@@ -32,10 +32,14 @@ from '/Users/eric/Documents/projects/SDC/recommendations/database/10Mproducts.cs
 DELIMITER ';'
 CSV HEADER;
 
-COPY info (id, department, category, subcategory, brand) TO '/Users/eric/Documents/projects/SDC/recommendations/database/postrec.csv' DELIMITER ';';
-COPY recommendations (id, department, category, subcategory, brand) FROM '/Users/eric/Documents/projects/SDC/recommendations/database/postrec.csv' DELIMITER ';';
+create index idx on info (department, category, subcategory, brand);
 
-create index idx_combo on recommendations (department, category, subcategory, brand);
+-- select * from info where department='Sports' and category='Granite' and subcategory='Rustic' and brand='Persevering';
+
+
+-- COPY info (id, department, category, subcategory, brand) TO '/Users/eric/Documents/projects/SDC/recommendations/database/postrec.csv' DELIMITER ';';
+-- COPY recommendations (id, department, category, subcategory, brand) FROM '/Users/eric/Documents/projects/SDC/recommendations/database/postrec.csv' DELIMITER ';';
+-- create index idx_combo on recommendations (department, category, subcategory, brand);
 
 -- select department, category, subcategory, brand from info where id = 8988988;
 -- select id from recommendations where department = 'Sports' and category = 'Granite' and subcategory = 'Rustic' and brand = 'Persevering';
