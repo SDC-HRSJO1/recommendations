@@ -15,7 +15,7 @@ const getRecs = (pid, callback) => {
 
 const addItem = (newItem, callback) => {
   const { department, category, subcategory, brand, price, title, description, image, tag, rating, review_count } = newItem;
-  pool.query('insert into info values (default, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) returning id', [department, category, subcategory, brand, price, title, description, image, tag, rating, review_count])
+  pool.query('insert into info values (default, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [department, category, subcategory, brand, price, title, description, image, tag, rating, review_count])
     .then(() => { callback(null); })
     .catch(() => { callback('post'); });
 };
@@ -35,7 +35,7 @@ const updateItem = (pid, updates, callback) => {
 };
 
 const deleteItem = (pid, callback) => {
-  pool.query('delete from info where id=$1 returning id', [pid])
+  pool.query('delete from info where id=$1', [pid])
     .then(() => { callback(null); })
     .catch(() => { callback('delete'); });
 };
