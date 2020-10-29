@@ -34,6 +34,8 @@ CSV HEADER;
 
 create index idx on info (department, category, subcategory, brand);
 
+alter sequence info_id_seq RESTART WITH 10000001;
+
 -- select * from info where department='Sports' and category='Granite' and subcategory='Rustic' and brand='Persevering';
 
 

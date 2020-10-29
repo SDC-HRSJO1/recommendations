@@ -6,6 +6,7 @@ const db = require('../database/index.js');
 
 const app = express();
 app.use(express.static(path.join(__dirname, '/../public/dist')));
+app.use(express.json());
 
 app.get('/:pid', (req, res) => {
   db.getRecs(req.params.pid, (err, recs) => {
@@ -18,15 +19,33 @@ app.get('/:pid', (req, res) => {
 });
 
 app.post('/new', (req, res) => {
-  res.status(201);
+  db.addItem(req.body, (err) => {
+    if (err) {
+      res.status(400);
+    } else {
+      res.status(201).send();
+    }
+  });
 });
 
 app.put('/:pid', (req, res) => {
-  res.status(204);
+  db.updateItem(req.params.pid, req.body, (err) => {
+    if (err) {
+      res.status(400);
+    } else {
+      res.status(204).send();
+    }
+  });
 });
 
 app.delete('/:pid', (req, res) => {
-  res.status(204);
+  db.deleteItem(req.params.pid, (err) => {
+    if (err) {
+      res.status(400);
+    } else {
+      res.status(204).send();
+    }
+  });
 });
 
 const port = 1234;
