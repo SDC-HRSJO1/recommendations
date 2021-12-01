@@ -1,20 +1,20 @@
-# Recommendations
-> This is a front-end recreation of the recommendations component on Lego. Based on the original functionality and style, the carousel is added to show more recommended items.
+# Product Recommendations Back End
+> The legacy codebase uses the product ID of the user's page to provide a list of recommended products from the database. This project expands the server & database's ability to operate with production level datasets (10 million primary records) under traffic load testing.
 
+# Tech Stack
+- JavaScript/Node
+- PostgreSQL
+- Cassandra
+- k6 & New Relic
 
-## Table of Contents
-1. [Usage](#Usage)
-2. [API](#API)
-
-
-## Usage
+# Usage
 1. npm i
 2. npm run build
 3. npm start
 4. http://localhost:1234/
 
 
-## API
+# API
 **GET:**\
 Request: pid (number)\
 Response: array of recommended products
