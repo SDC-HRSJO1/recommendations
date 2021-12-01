@@ -1,5 +1,5 @@
 # Product Recommendations Back End
-> The legacy codebase uses the product ID of the user's page to provide a list of recommended products from the database. This project expands the server & database's ability to operate with production level datasets (10 million primary records) under traffic load testing.
+> This project expands the server & database's ability to operate with production level datasets (10 million primary records) under traffic load testing. The legacy codebase uses the product ID of the user's page to provide a list of recommended products from the database.
 
 # Tech Stack
 - JavaScript/Node
